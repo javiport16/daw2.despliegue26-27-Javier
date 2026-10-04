@@ -38,3 +38,7 @@ cat << 'EOF' > /etc/apache2/sites-available/flaskapp.conf
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOF
+# 4. Activación del sitio virtual, desactivación del sitio por defecto y recarga de Apache
+a2ensite flaskapp.conf
+a2dissite 000-default.conf
+systemctl reload apache2
