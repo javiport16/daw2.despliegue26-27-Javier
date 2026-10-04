@@ -18,3 +18,9 @@ def hello():
 if __name__ == "__main__":
     app.run()
 EOF
+# 2. Creación del adaptador WSGI (app.wsgi)
+cat << 'EOF' > /var/www/flaskapp/app.wsgi
+import sys
+sys.path.insert(0, "/var/www/flaskapp")
+from app import app as application
+EOF
