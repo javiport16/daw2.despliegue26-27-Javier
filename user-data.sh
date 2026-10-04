@@ -24,3 +24,17 @@ import sys
 sys.path.insert(0, "/var/www/flaskapp")
 from app import app as application
 EOF
+# 3. Creación de la configuración del VirtualHost en Apache (flaskapp.conf)
+cat << 'EOF' > /etc/apache2/sites-available/flaskapp.conf
+<VirtualHost *:80>
+    ServerName localhost
+    WSGIScriptAlias / /var/www/flaskapp/app.wsgi
+
+    <Directory /var/www/flaskapp>
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
