@@ -6,3 +6,15 @@ apt-get install -y apache2 libapache2-mod-wsgi-py3 python3-flask
 mkdir -p /var/www/flaskapp
 chown -R www-data:www-data /var/www/flaskapp
 chmod -R 755 /var/www/flaskapp
+# 1. Creación del archivo app.py (Aplicación Flask)
+cat << 'EOF' > /var/www/flaskapp/app.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Aplicación Flask en AWS desplegada automáticamente por [Javier Portela] - [04/10/2026]\n"
+
+if __name__ == "__main__":
+    app.run()
+EOF
